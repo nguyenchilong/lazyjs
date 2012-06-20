@@ -1,11 +1,15 @@
+Demo:
+
+http://ajax.artnazarov.ru/index/jquerydemo
+
 Library allows you to:
  - attach serverside event ajax listeners to any dom nodes
  - process server json responce as queue of commands (for creating, updating or removing dom nodes)
 
 1. Server side script
 
-/ / Server response determines
-                     / / What DOM nodes are created, updated or deleted
+// Server response determines
+// What DOM nodes are created, updated or deleted
 		  $answer = array(
                       array(
                         'type' => 'update', // Update DOM nodes
