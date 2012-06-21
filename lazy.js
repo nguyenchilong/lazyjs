@@ -1,8 +1,15 @@
+function fapply(f, x)
+{
+	eval(f)(x);
+}
+
 /*
  Виртуальная машина - интерпретирует ответ сервера как команду
 и обновляет интерфейс
+ JS engine - proccess server responce as queue of commands and updates interface
  */
 
+ 
 var JSVM = function(){};
 JSVM.prototype =
     {
@@ -51,6 +58,13 @@ JSVM.prototype =
                                                                                           
                                                                                   };
                                                                               };
+																			  // Выполнение функции на клиенте
+																			  if (obj.type=="fx")
+																			  {
+																					var f = obj.fx;
+																					var x = obj.args;
+																					fapply(f, x);
+																			  };
                                                               }
 									
 					}

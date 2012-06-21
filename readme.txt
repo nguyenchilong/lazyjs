@@ -6,24 +6,24 @@ Library allows you to:
  - attach serverside event ajax listeners to any dom nodes
  - process server json responce as queue of commands (for creating, updating or removing dom nodes)
 
-1. Server side script
+1. Server side PHP script
 
-// Server response determines
-// What DOM nodes are created, updated or deleted
-		  $answer = array(
+// JSON responce as commands
+
+ $answer = array(
                       array(
-                        'type' => 'update', // Update DOM nodes
+                        'type' => 'update', // update dom node
                         'nodes' => array(
                       
-                            'target1' => rand(0, 99),
-                            'target2' => rand(0, 99)
+                            'target1' => $x,
+                            'target2' => $y
                           )
                        ),
                       array(
-                        'type' => 'remove', // remove DOM nodes
+                        'type' => 'remove', // remove dom node
                         'nodes' => array( "delete_node"  )                         
                             ),
-                      // Insert DOM Nodes
+                      // insert dom node
                       array(
                           'type'=>'insert',
                           'nodes' => 
@@ -37,9 +37,15 @@ Wow
 
 ")
                                     )
-                          )
+                          ),
+					// execute javascript function on client side
+					array(
+						'type' => "fx",
+						'fx' => "sum",
+						'args' => array("x" => $x, "y" => $y)
+						)
 		  );
-                  // Send response to js-client
+                  // send responce to client 
 		  echo json_encode($answer);
 		  
 2. Client javascript
