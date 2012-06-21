@@ -23,7 +23,10 @@ JSVM.prototype =
 					try 
 					{ 								
 									var actions = $.parseJSON(data);
-                                                                                // Обновление узлов DOM     
+                                                                                /*
+																				Обновление узлов DOM     
+																				Update DOM node
+																				*/
                                                                         for (nom in actions)               
                                                                             {
                                                                                
@@ -36,7 +39,10 @@ JSVM.prototype =
                                                                                       $('#' + key).html(obj.nodes[key]);
                                                                                   };
                                                                               };
-                                                                               // Удаление узлов DOM
+                                                                               /*
+																			   Удаление узлов DOM
+																			   Remove DOM node
+																			   */
                                                                         if (obj.type == 'remove')
 									      {
                                                                                   
@@ -45,7 +51,10 @@ JSVM.prototype =
                                                                                       $('#' + obj.nodes[key]).remove();
                                                                                   };
                                                                               };
-                                                                              // Вставка узлов DOM
+                                                                              /* 
+																			  Вставка узлов DOM
+																			  Insert DOM node
+																			  */																			  
                                                                                 if (obj.type == 'insert')
 									      {
                                                                                   
@@ -62,7 +71,10 @@ JSVM.prototype =
                                                                                           
                                                                                   };
                                                                               };
-																			  // Выполнение функции на клиенте
+																			  /*
+																			  Выполнение функции на клиенте
+																			  Execute JS function by name
+																			  */
 																			  if (obj.type=="fx")
 																			  {
 																					var f = obj.fx;
@@ -91,6 +103,7 @@ SCHEME.prototype =
     };
 /*
 Назначает элементам интерфейса обработчики событий на сервере
+Add serverside event listeners to user interface DOM nodes
  */
 var LAZY = function(){};
 
