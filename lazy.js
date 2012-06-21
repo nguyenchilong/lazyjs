@@ -1,3 +1,7 @@
+﻿/*
+Execute JS function by name
+*/
+
 function fapply(f, x)
 {
 	eval(f)(x);
