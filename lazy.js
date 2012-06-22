@@ -1,7 +1,3 @@
-﻿/*
-Execute JS function by name
-*/
-
 function fapply(f, x)
 {
 	eval(f)(x);
@@ -23,10 +19,7 @@ JSVM.prototype =
 					try 
 					{ 								
 									var actions = $.parseJSON(data);
-                                                                                /*
-																				Обновление узлов DOM     
-																				Update DOM node
-																				*/
+                                                                                // Обновление узлов DOM     
                                                                         for (nom in actions)               
                                                                             {
                                                                                
@@ -39,10 +32,7 @@ JSVM.prototype =
                                                                                       $('#' + key).html(obj.nodes[key]);
                                                                                   };
                                                                               };
-                                                                               /*
-																			   Удаление узлов DOM
-																			   Remove DOM node
-																			   */
+                                                                               // Удаление узлов DOM
                                                                         if (obj.type == 'remove')
 									      {
                                                                                   
@@ -51,10 +41,7 @@ JSVM.prototype =
                                                                                       $('#' + obj.nodes[key]).remove();
                                                                                   };
                                                                               };
-                                                                              /* 
-																			  Вставка узлов DOM
-																			  Insert DOM node
-																			  */																			  
+                                                                              // Вставка узлов DOM
                                                                                 if (obj.type == 'insert')
 									      {
                                                                                   
@@ -71,10 +58,7 @@ JSVM.prototype =
                                                                                           
                                                                                   };
                                                                               };
-																			  /*
-																			  Выполнение функции на клиенте
-																			  Execute JS function by name
-																			  */
+																			  // Выполнение функции на клиенте
 																			  if (obj.type=="fx")
 																			  {
 																					var f = obj.fx;
@@ -99,11 +83,10 @@ SCHEME.prototype =
      event : 'click',
      url   : '/index/index/',
      type  : 'GET',
-     data  : null
+     data  : function() {return null; }
     };
 /*
 Назначает элементам интерфейса обработчики событий на сервере
-Add serverside event listeners to user interface DOM nodes
  */
 var LAZY = function(){};
 
@@ -116,8 +99,9 @@ scheme.data - request params
 scheme.type - type (GET or POST)
 scheme.url - ajax request
 */
+			binded      : {},
 			addcontrol 	: function(scheme)
-				{    
+				{    			
 					$(scheme.item).bind( scheme.event, function () 
 						{
   
@@ -125,7 +109,7 @@ scheme.url - ajax request
 										{ 
 											'type' : scheme.type,
 											'url' : scheme.url,
-											'data' : scheme.data
+											'data' : scheme.data()
 										}
 									).success(
 											function (data)
@@ -140,12 +124,25 @@ scheme.url - ajax request
 			
 			watch : function(data)
 				{
+				
 					for (key in data)
 						{
-							this.addcontrol(data[key]);
-						};
+								var r = data[key].item.substring(1);
+								if (document.getElementById(r)	!==	null)				  
+									{
+								if 	(this.binded[r] !== 1 )
+										{
+												this.binded[r] = 1;
+												this.addcontrol(data[key]);
+												console.log(r + ' event listener activated');
+										};
+									}
+									else
+									{
+												this.binded[r] = 0;
+									};
+						}; // end for
 				}
-
 }
 
 /*
