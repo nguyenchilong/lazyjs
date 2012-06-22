@@ -71,3 +71,19 @@ var my_ui = [ ev1, ev2 ];
 U.watch(my_ui); 
 }
 );
+
+3. If the controls do not exist at the time of announcement, or can be removed, use the following
+
+...
+
+	function events()
+	{
+	U.watch(my_ui);
+	};
+	
+	setInterval(events, 50);
+...
+	
+	Demo: 
+
+http://viktorina.artnazarov.ru
