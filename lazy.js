@@ -24,7 +24,7 @@ JSVM.prototype =
                                                                             {
                                                                                
                                                                             var obj = actions[nom];
-                                                                            console.log(obj);
+                                                                            // console.log(obj);
                                                                         if (obj.type == 'update')
 									      {
                                                                                 for (key in obj.nodes)
@@ -47,7 +47,7 @@ JSVM.prototype =
                                                                                   
                                                                                 for (key in obj.nodes)
                                                                                   {
-                                                                                      console.log(obj.nodes[key]);
+                                                                                      // console.log(obj.nodes[key]);
                                                                                       if (obj.nodes[key].where == 'after')
                                                                                           {
                                                                                             $('#' + key).after(obj.nodes[key].content);
@@ -134,7 +134,7 @@ scheme.url - ajax request
 										{
 												this.binded[r] = 1;
 												this.addcontrol(data[key]);
-												console.log(r + ' event listener activated');
+												// console.log(r + ' event listener activated');
 										};
 									}
 									else
