@@ -143,7 +143,7 @@ scheme.url - ajax request
 									};
 						}; // end for
 				}
-}
+};
 
 /*
 CASE OF USE
@@ -167,3 +167,52 @@ $(document).ready(
 }
 );
 */
+
+var SCHEME_CLIENT_ONLY = function(){};
+SCHEME_CLIENT_ONLY.prototype =
+    {
+     item  : '#id',
+     signal : 'click',
+     data  : function() {return null; },
+	 slot  : function(data) { return null;}
+    };
+var LAZY_CLIENT_ONLY = function(){};
+LAZY_CLIENT_ONLY.prototype = 
+{
+/*
+item - event source (button id, etc)
+signal - event type (click, mouseover, etc)
+data - build params for slot
+slot - target function
+*/
+			binded      : {},
+			addcontrol 	: function(scheme)
+				{    			
+					$(scheme.item).bind( scheme.signal, function () 
+						{
+								scheme.slot(scheme.data())
+				        })
+				},
+			
+			watch : function(data)
+				{
+				
+					for (key in data)
+						{
+								var r = data[key].item.substring(1);
+								if (document.getElementById(r)	!==	null)				  
+									{
+								if 	(this.binded[r] !== 1 )
+										{
+												this.binded[r] = 1;
+												this.addcontrol(data[key]);
+												// console.log(r + ' event listener activated');
+										};
+									}
+									else
+									{
+												this.binded[r] = 0;
+									};
+						}; // end for
+				}
+};	

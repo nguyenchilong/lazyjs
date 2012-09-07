@@ -87,3 +87,35 @@ U.watch(my_ui);
 	Demo: 
 
 http://viktorina.artnazarov.ru
+
+
+3. Additional notes
+
+Use LAZY_CLIENT_ONLY listener and SCHEME_CLIENT_ONLY containters to control clientside events
+For example, we can write simplest calculator:
+
+
+	var cl_Listener = new LAZY_CLIENT_ONLY(); 
+
+	var cl_ButtonPlus = new SCHEME_CLIENT_ONLY();
+	var cl_ButtonMinus = new SCHEME_CLIENT_ONLY();
+	var cl_ButtonMult = new SCHEME_CLIENT_ONLY();
+	var cl_ButtonDivide = new SCHEME_CLIENT_ONLY();
+	
+	cl_ButtonPlus.item = '#button_plus';
+	cl_ButtonPlus.slot = function() {
+						$('#result').html(
+					parseFloat($('#num1').attr('value'))+parseFloat($('#num2').attr('value'))
+										 );
+							};
+	...
+   						
+						
+        var client_interface = [cl_ButtonPlus, cl_ButtonMinus, cl_ButtonMult, cl_ButtonDivide];    						
+	
+	function client_events()
+	{
+			cl_Listener.watch(client_interface);
+	};
+	
+	setInterval(client_events, 300);
