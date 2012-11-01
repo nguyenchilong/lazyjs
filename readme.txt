@@ -1,6 +1,6 @@
 Demo:
 
-http://ajax.artnazarov.ru/index/jquerydemo
+http://ajax.artnazarov.ru/
 
 Library allows you to:
  - attach serverside event ajax listeners to any dom nodes
@@ -119,3 +119,7 @@ For example, we can write simplest calculator:
 	};
 	
 	setInterval(client_events, 300);
+
+4. Serverside helper
+
+Use class LazyJS from file lazyjsonserver.php

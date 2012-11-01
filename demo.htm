@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src='/lazy.js'></script>
+		<script>
+$(document).ready(
+		function()
+			{
+				var U = new LAZY();
+
+var ev1 = new SCHEME();
+var ev2 = new SCHEME();
+var ev3 = new SCHEME();
+
+ev1.item = '#updDiv';
+ev1.url = '/main.php';
+ev1.data = function() 
+		{ 
+		return {action : 'update'}
+		};
+
+ev2.item = '#addDiv';
+ev2.url = '/main.php?action=insert';
+
+ev3.item = '#rmDiv';
+ev3.url = '/main.php?action=remove';
+
+var my_ui = [ ev1, ev2, ev3 ];
+
+U.watch(my_ui); 
+}
+);
+
+		</script>
+		<title>Lazy JS demo</title>
+		<style>
+			#upd {background-color:#00ff00}
+			#rm {background-color:#ff0000}
+			#ui {background-color:#e8e8e8}
+			#apptitle {background-color:#bb00bb}
+		</style>
+	</head>	
+<body>
+<div id='ui'>
+	<div id='upd'>This green div must be updated</div>	
+	<div id='rm'>This red div must be removed</div>	
+	
+		<div id='apptitle'>title</div>
+		<div id='list'></div>
+        <hr/>		
+	<input type='button' id='rmDiv' value='Remove red node' />
+	<input type='button' id='addDiv' value='Insert new node' />
+	<input type='button' id='updDiv' value='Update green node'  />
+</div>	
+</body>
+</html>	
