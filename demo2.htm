@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src='/lazy.js'></script>
+		<script>
+$(document).ready(
+
+		function()
+			{
+                            
+                        // GET RATING    
+                            $.ajax({method:'GET',
+                            url  :'/rating.php',                            
+                            data : 'action=rating' }).done
+                        (function(responce)
+                        {
+                            var vm = new JSVM();                            
+                            vm.json_worker(responce);
+                         }   
+                    );
+				
+
+var ev1 = new SCHEME();
+var U = new LAZY();
+ev1.item = '#btnRating';
+ev1.type = 'GET';
+ev1.url = '/rating.php';
+ev1.data = function() 
+		{ 
+		data = 'action=vote';
+                data += '&vote='+$('#vote').val();                
+                return data;
+		};
+var my_ui = [ ev1 ];
+
+U.watch(my_ui); 
+}
+);
+
+		</script>
+		<title>Lazy JS demo</title>		
+	</head>	
+<body>
+<div id='ui'>
+	
+    <div id="rating">
+        <div id="current_rating"></div>
+        <div id="frmVote">
+        <form id="rating_form">
+            <label for="vote">Голос</label>
+            <select id="vote">
+                <option value="+1" selected>За</option>
+                <option value="-1">Против</option>
+            </select>
+            <input type="button" id="btnRating" value="Проголосовать!">
+        </form>
+        </div>
+    </div>    
+</div>	
+</body>
+</html>	
