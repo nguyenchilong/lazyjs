@@ -165,7 +165,8 @@ slot - target function
 */
 			binded      : {},
 		addcontrol 	: function(scheme)
-				{    			
+				{    
+                                    
 					$(scheme.item).bind( scheme.signal, function () 
 						{
 								scheme.slot(scheme.data())
@@ -178,9 +179,10 @@ slot - target function
 					for (key in data)
 						{
 								var r = data[key].item.substring(1);
+                                                               
 								if (document.getElementById(r)	!==	null)				  
 									{
-								if 	(this.binded[r] !== 1 )
+								if 	((this.binded[r] !== 1)||($(scheme.item).data('events')==undefined))
 										{
 												this.binded[r] = 1;
 												this.addcontrol(data[key]);
@@ -191,6 +193,8 @@ slot - target function
 									{
 												this.binded[r] = 0;
 									};
+                                                              
+                                                              
 						}; // end for
 				}
 };	
