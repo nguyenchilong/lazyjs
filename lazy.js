@@ -102,7 +102,7 @@ scheme.url - ajax request
 			binded      : {},
 			addcontrol 	: function(scheme)
 				{    			
-					$(scheme.item).bind( scheme.event, function () 
+					$(scheme.item).live( scheme.event, function () 
 						{
   
 							$.ajax( 
@@ -130,7 +130,7 @@ scheme.url - ajax request
 								var r = data[key].item.substring(1);
 								if (document.getElementById(r)	!==	null)				  
 									{
-								if 	(this.binded[r] !== 1 )
+								if 	(this.binded[r] !== 1)
 										{
 												this.binded[r] = 1;
 												this.addcontrol(data[key]);
@@ -141,32 +141,10 @@ scheme.url - ajax request
 									{
 												this.binded[r] = 0;
 									};
+                                                              
 						}; // end for
 				}
-};
-
-/*
-CASE OF USE
-$(document).ready(
- function()
-{
-    var U = new LAZY();
-    
-    var ev1 = new SCHEME();
-    var ev2 = new SCHEME();
-                    
-        ev1.item = '#button1';
-        ev1.url = '/index/reqrandjq';
-                    
-        ev2.item = '#button2';
-        ev2.url = '/index/nomethod';                    
-                    
-    var my_ui = [ ev1, ev2 ];
-    
-    U.watch(my_ui); 
 }
-);
-*/
 
 var SCHEME_CLIENT_ONLY = function(){};
 SCHEME_CLIENT_ONLY.prototype =
@@ -186,7 +164,7 @@ data - build params for slot
 slot - target function
 */
 			binded      : {},
-			addcontrol 	: function(scheme)
+		addcontrol 	: function(scheme)
 				{    			
 					$(scheme.item).bind( scheme.signal, function () 
 						{
@@ -216,3 +194,27 @@ slot - target function
 						}; // end for
 				}
 };	
+
+
+/*
+CASE OF USE
+$(document).ready(
+ function()
+{
+    var U = new LAZY();
+    
+    var ev1 = new SCHEME();
+    var ev2 = new SCHEME();
+                    
+        ev1.item = '#button1';
+        ev1.url = '/index/reqrandjq';
+                    
+        ev2.item = '#button2';
+        ev2.url = '/index/nomethod';                    
+                    
+    var my_ui = [ ev1, ev2 ];
+    
+    U.watch(my_ui); 
+}
+);
+*/
